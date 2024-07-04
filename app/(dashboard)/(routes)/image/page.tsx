@@ -5,7 +5,8 @@ import axios from "axios";
 import Heading from "@/components/header";
 import { Download, ImageIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { amountOptions, formSchema, resolutionOptions } from "./constant";
+import { imageSchema } from "@/schemas";
+import { amountOptions, resolutionOptions } from "@/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -28,8 +29,8 @@ export default function ImagePage() {
     const router = useRouter();
     const [images, setImages] = useState<string[]>([]);
 
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<z.infer<typeof imageSchema>>({
+        resolver: zodResolver(imageSchema),
         defaultValues: {
             prompt: "",
             amount: "1",
@@ -39,7 +40,7 @@ export default function ImagePage() {
 
     const isLoading = form.formState.isSubmitting;
 
-    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const onSubmit = async (values: z.infer<typeof imageSchema>) => {
         try {
             setImages([]);
 

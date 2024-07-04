@@ -11,7 +11,7 @@ export default function Loader({ waitingTime }: LoaderProps) {
                 <Image src="/logo.png" alt="logo" fill />
             </div>
             <p className="text-sm text-muted-foreground">
-                Genius is thinking...{" "}
+                Tool is running...{" "}
                 {waitingTime &&
                     `\nIt will take ${waitingTime}, Please be patient!`}
             </p>

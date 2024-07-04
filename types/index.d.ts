@@ -55,6 +55,12 @@ declare type UpdateImageParams = {
     path: string;
 };
 
+declare type GetAllImagesParams = {
+    limit?: number;
+    page: number;
+    searchQuery?: string;
+};
+
 declare type Transformations = {
     restore?: boolean;
     fillBackground?: boolean;

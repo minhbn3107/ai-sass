@@ -5,7 +5,7 @@ import axios from "axios";
 import Heading from "@/components/header";
 import { Music } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { formSchema } from "./constant";
+import { musicSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -19,8 +19,8 @@ export default function MusicPage() {
     const router = useRouter();
     const [music, setMusic] = useState<string>();
 
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<z.infer<typeof musicSchema>>({
+        resolver: zodResolver(musicSchema),
         defaultValues: {
             prompt: "",
         },
@@ -28,7 +28,7 @@ export default function MusicPage() {
 
     const isLoading = form.formState.isSubmitting;
 
-    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const onSubmit = async (values: z.infer<typeof musicSchema>) => {
         try {
             setMusic(undefined);
 

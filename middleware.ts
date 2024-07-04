@@ -7,6 +7,9 @@ const isProtectedRoute = createRouteMatcher([
     "/video(.*)",
     "/music(.*)",
     "/code(.*)",
+    "/transformations(.*)",
+    "/profile(.*)",
+    "/credits(.*)",
     "/setting(.*)",
 ]);
 

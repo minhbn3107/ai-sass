@@ -5,7 +5,7 @@ import axios from "axios";
 import Heading from "@/components/header";
 import { Video } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { formSchema } from "./constant";
+import { videoSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -19,8 +19,8 @@ export default function VideoPage() {
     const router = useRouter();
     const [video, setVideo] = useState<string>();
 
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<z.infer<typeof videoSchema>>({
+        resolver: zodResolver(videoSchema),
         defaultValues: {
             prompt: "",
         },
@@ -28,7 +28,7 @@ export default function VideoPage() {
 
     const isLoading = form.formState.isSubmitting;
 
-    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const onSubmit = async (values: z.infer<typeof videoSchema>) => {
         try {
             setVideo(undefined);
 
@@ -51,8 +51,8 @@ export default function VideoPage() {
                 title="Video Generation"
                 description="Turn your prompt into video."
                 icon={Video}
-                iconColor="text-orange-700"
-                bgColor="bg-orange-700/10"
+                iconColor="text-orange-300"
+                bgColor="bg-orange-300/10"
             />
             <div className="px-4 lg:px-8">
                 <Form {...form}>

@@ -5,7 +5,7 @@ import axios from "axios";
 import Heading from "@/components/header";
 import { MessageSquare } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { formSchema } from "./constant";
+import { conversationSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -23,8 +23,8 @@ export default function ConversationPage() {
     const router = useRouter();
     const [messages, setMessages] = useState<ChatCompletionMessageParam[]>([]);
 
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<z.infer<typeof conversationSchema>>({
+        resolver: zodResolver(conversationSchema),
         defaultValues: {
             prompt: "",
         },
@@ -32,7 +32,7 @@ export default function ConversationPage() {
 
     const isLoading = form.formState.isSubmitting;
 
-    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const onSubmit = async (values: z.infer<typeof conversationSchema>) => {
         try {
             const userMessage: ChatCompletionMessageParam = {
                 role: "user",
