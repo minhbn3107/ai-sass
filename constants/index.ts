@@ -1,120 +1,3 @@
-import {
-    Code,
-    ImageIcon,
-    LayoutDashboard,
-    MessageSquare,
-    Music,
-    Settings,
-    VideoIcon,
-    ImageOff,
-    Sparkles,
-    StarOff,
-    Palette,
-    ImageMinus,
-    User,
-    CreditCard,
-} from "lucide-react";
-
-export const routes = [
-    {
-        label: "Dashboard",
-        icon: LayoutDashboard,
-        href: "/dashboard",
-        color: "text-sky-500",
-    },
-    {
-        label: "Conversation",
-        icon: MessageSquare,
-        href: "/conversation",
-        color: "text-violet-500",
-        bgColor: "bg-violet-500/10",
-    },
-    {
-        label: "Image Generation",
-        icon: ImageIcon,
-        href: "/image",
-        color: "text-pink-700",
-        bgColor: "bg-pink-700/10",
-    },
-    {
-        label: "Video Generation",
-        icon: VideoIcon,
-        href: "/video",
-        color: "text-orange-300",
-        bgColor: "bg-orange-300/10",
-    },
-    {
-        label: "Music Generation",
-        icon: Music,
-        href: "/music",
-        color: "text-emerald-500",
-        bgColor: "bg-emerald-500/10",
-    },
-    {
-        label: "Code Generation",
-        icon: Code,
-        href: "/code",
-        color: "text-blue-700",
-        bgColor: "bg-blue-700/10",
-    },
-    {
-        label: "Image Restore",
-        icon: ImageOff,
-        href: "/transformations/add/restore",
-        color: "text-blue-700",
-        bgColor: "bg-blue-700/10",
-    },
-    {
-        label: "Generative Fill",
-        icon: Sparkles,
-        href: "/transformations/add/fill",
-        color: "text-yellow-500",
-        bgColor: "bg-yellow-500/10",
-    },
-    {
-        label: "Object Remove",
-        icon: StarOff,
-        href: "/transformations/add/remove",
-        color: "text-blue-500",
-        bgColor: "bg-blue-500/10",
-    },
-    {
-        label: "Object Recolor",
-        icon: Palette,
-        href: "/transformations/add/recolor",
-        color: "text-purple-500",
-        bgColor: "bg-purple-500/10",
-    },
-    {
-        label: "Background Remove",
-        icon: ImageMinus,
-        href: "/transformations/add/removeBackground",
-        color: "text-teal-500",
-        bgColor: "bg-teal-500/10",
-    },
-    {
-        label: "Profile",
-        icon: User,
-        href: "/profile",
-        color: "text-indigo-500",
-        bgColor: "bg-indigo-500/10",
-    },
-    {
-        label: "Buy Credits",
-        icon: CreditCard,
-        href: "/credits",
-        color: "text-amber-500",
-        bgColor: "bg-amber-500/10",
-    },
-    {
-        label: "Settings",
-        icon: Settings,
-        href: "/settings",
-        color: "text-gray-500",
-        bgColor: "bg-gray-500/10",
-    },
-];
-
 export const amountOptions = [
     {
         value: "1",
@@ -157,12 +40,12 @@ export const plans = [
     {
         _id: 1,
         name: "Free",
-        icon: "/assets/icons/free-plan.svg",
+        icon: "Map",
         price: 0,
-        credits: 20,
+        credits: 5,
         inclusions: [
             {
-                label: "20 Free Credits",
+                label: "5 Free Credits",
                 isIncluded: true,
             },
             {
@@ -182,7 +65,7 @@ export const plans = [
     {
         _id: 2,
         name: "Pro Package",
-        icon: "/assets/icons/free-plan.svg",
+        icon: "Map",
         price: 40,
         credits: 120,
         inclusions: [
@@ -207,7 +90,7 @@ export const plans = [
     {
         _id: 3,
         name: "Premium Package",
-        icon: "/assets/icons/free-plan.svg",
+        icon: "Map",
         price: 199,
         credits: 2000,
         inclusions: [
@@ -237,7 +120,7 @@ export const transformationTypes = {
         title: "Restore Image",
         subTitle: "Refine images by removing noise and imperfections",
         config: { restore: true },
-        icon: ImageOff,
+        icon: "ImageOff",
         color: "text-red-500",
         bgColor: "bg-red-500/10",
     },
@@ -246,7 +129,7 @@ export const transformationTypes = {
         title: "Background Remove",
         subTitle: "Removes the background of the image using AI",
         config: { removeBackground: true },
-        icon: ImageMinus,
+        icon: "ImageMinus",
         color: "text-teal-500",
         bgColor: "bg-teal-500/10",
     },
@@ -255,7 +138,7 @@ export const transformationTypes = {
         title: "Generative Fill",
         subTitle: "Enhance an image's dimensions using AI outpainting",
         config: { fillBackground: true },
-        icon: Sparkles,
+        icon: "Sparkles",
         color: "text-yellow-500",
         bgColor: "bg-yellow-500/10",
     },
@@ -266,7 +149,7 @@ export const transformationTypes = {
         config: {
             remove: { prompt: "", removeShadow: true, multiple: true },
         },
-        icon: StarOff,
+        icon: "StarOff",
         color: "text-blue-500",
         bgColor: "bg-blue-500/10",
     },
@@ -277,7 +160,7 @@ export const transformationTypes = {
         config: {
             recolor: { prompt: "", to: "", multiple: true },
         },
-        icon: Palette,
+        icon: "Palette",
         color: "text-purple-500",
         bgColor: "bg-purple-500/10",
     },

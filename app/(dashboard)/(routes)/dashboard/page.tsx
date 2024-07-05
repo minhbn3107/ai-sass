@@ -1,10 +1,125 @@
 import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
-import { routes } from "@/constants";
 import { getAllImages } from "@/lib/actions/image.actions";
 import Link from "next/link";
 import { Collection } from "@/components/collection";
+import {
+    Code,
+    ImageIcon,
+    LayoutDashboard,
+    MessageSquare,
+    Music,
+    Settings,
+    VideoIcon,
+    ImageOff,
+    Sparkles,
+    StarOff,
+    Palette,
+    ImageMinus,
+    User,
+    CreditCard,
+} from "lucide-react";
+
+export const routes = [
+    {
+        label: "Dashboard",
+        icon: LayoutDashboard,
+        href: "/dashboard",
+        color: "text-sky-500",
+    },
+    {
+        label: "Conversation",
+        icon: MessageSquare,
+        href: "/conversation",
+        color: "text-violet-500",
+        bgColor: "bg-violet-500/10",
+    },
+    {
+        label: "Image Generation",
+        icon: ImageIcon,
+        href: "/image",
+        color: "text-pink-500",
+        bgColor: "bg-pink-500/10",
+    },
+    {
+        label: "Video Generation",
+        icon: VideoIcon,
+        href: "/video",
+        color: "text-orange-300",
+        bgColor: "bg-orange-300/10",
+    },
+    {
+        label: "Music Generation",
+        icon: Music,
+        href: "/music",
+        color: "text-emerald-500",
+        bgColor: "bg-emerald-500/10",
+    },
+    {
+        label: "Code Generation",
+        icon: Code,
+        href: "/code",
+        color: "text-blue-700",
+        bgColor: "bg-blue-700/10",
+    },
+    {
+        label: "Image Restore",
+        icon: ImageOff,
+        href: "/transformations/add/restore",
+        color: "text-red-700",
+        bgColor: "bg-red-700/10",
+    },
+    {
+        label: "Generative Fill",
+        icon: Sparkles,
+        href: "/transformations/add/fill",
+        color: "text-yellow-500",
+        bgColor: "bg-yellow-500/10",
+    },
+    {
+        label: "Object Remove",
+        icon: StarOff,
+        href: "/transformations/add/remove",
+        color: "text-blue-500",
+        bgColor: "bg-blue-500/10",
+    },
+    {
+        label: "Object Recolor",
+        icon: Palette,
+        href: "/transformations/add/recolor",
+        color: "text-purple-500",
+        bgColor: "bg-purple-500/10",
+    },
+    {
+        label: "Background Remove",
+        icon: ImageMinus,
+        href: "/transformations/add/removeBackground",
+        color: "text-teal-500",
+        bgColor: "bg-teal-500/10",
+    },
+    {
+        label: "Profile",
+        icon: User,
+        href: "/profile",
+        color: "text-indigo-300",
+        bgColor: "bg-indigo-300/10",
+    },
+    {
+        label: "Buy Credits",
+        icon: CreditCard,
+        href: "/credits",
+        color: "text-amber-500",
+        bgColor: "bg-amber-500/10",
+    },
+    {
+        label: "Settings",
+        icon: Settings,
+        href: "/settings",
+        color: "text-gray-300",
+        bgColor: "bg-gray-300/10",
+    },
+];
 
 export default async function DashboardPage({
     searchParams,

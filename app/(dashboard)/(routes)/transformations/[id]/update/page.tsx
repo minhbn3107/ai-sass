@@ -5,6 +5,24 @@ import TransformationForm from "@/components/transformation-form";
 import { transformationTypes } from "@/constants";
 import { getUserById } from "@/lib/actions/user.actions";
 import { getImageById } from "@/lib/actions/image.actions";
+import {
+    ImageOff,
+    ImageMinus,
+    Sparkles,
+    StarOff,
+    Palette,
+    LucideIcon,
+} from "lucide-react";
+
+type IconName = "ImageOff" | "ImageMinus" | "Sparkles" | "StarOff" | "Palette";
+
+const iconMap: Record<IconName, LucideIcon> = {
+    ImageOff,
+    ImageMinus,
+    Sparkles,
+    StarOff,
+    Palette,
+};
 
 const UpdatePage = async ({ params: { id } }: SearchParamProps) => {
     const { userId } = auth();
@@ -22,7 +40,7 @@ const UpdatePage = async ({ params: { id } }: SearchParamProps) => {
             <Heading
                 title={transformation.title}
                 description={transformation.subTitle}
-                icon={transformation.icon}
+                icon={iconMap[transformation.icon as IconName]}
                 iconColor={transformation.color}
                 bgColor={transformation.bgColor}
             />

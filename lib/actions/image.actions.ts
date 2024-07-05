@@ -149,7 +149,7 @@ export async function getAllImages({
 }
 
 export async function getUserImages({
-    limit = 9,
+    limit = 8,
     page = 1,
     userId,
 }: {

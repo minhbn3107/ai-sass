@@ -1,11 +1,11 @@
 "use client";
 
+import { routes } from "@/app/(dashboard)/(routes)/dashboard/page";
 import { cn } from "@/lib/utils";
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { routes } from "@/constants";
 
 const monserrat = Montserrat({ weight: "600", subsets: ["latin"] });
 

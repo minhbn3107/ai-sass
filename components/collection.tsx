@@ -115,9 +115,9 @@ const Card = ({ image }: { image: IImage }) => {
                     <p className="p-20-semibold mr-3 line-clamp-1 text-dark-600">
                         {image.title}
                     </p>
-                    <transformationType.icon
+                    {/* <transformationType.icon
                         className={cn("w-6 h-6", transformationType.color)}
-                    />
+                    /> */}
                 </div>
             </Link>
         </li>

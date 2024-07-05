@@ -4,6 +4,24 @@ import { transformationTypes } from "@/constants";
 import TransformationForm from "@/components/transformation-form";
 import { auth } from "@clerk/nextjs/server";
 import { getUserById } from "@/lib/actions/user.actions";
+import {
+    ImageOff,
+    ImageMinus,
+    Sparkles,
+    StarOff,
+    Palette,
+    LucideIcon,
+} from "lucide-react";
+
+type IconName = "ImageOff" | "ImageMinus" | "Sparkles" | "StarOff" | "Palette";
+
+const iconMap: Record<IconName, LucideIcon> = {
+    ImageOff,
+    ImageMinus,
+    Sparkles,
+    StarOff,
+    Palette,
+};
 
 export default async function AddTransformationTypePage({
     params: { type },
@@ -20,7 +38,7 @@ export default async function AddTransformationTypePage({
             <Heading
                 title={transformation.title}
                 description={transformation.subTitle}
-                icon={transformation.icon}
+                icon={iconMap[transformation.icon as IconName]}
                 iconColor={transformation.color}
                 bgColor={transformation.bgColor}
             />

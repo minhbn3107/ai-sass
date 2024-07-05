@@ -4,9 +4,11 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import Heading from "@/components/header";
 import { Button } from "@/components/ui/button";
-import { plans, routes } from "@/constants";
+import { plans } from "@/constants";
 import { getUserById } from "@/lib/actions/user.actions";
 import Checkout from "@/components/check-out";
+import { Check, Map, X } from "lucide-react";
+import { routes } from "../dashboard/page";
 
 const Credits = async () => {
     const { userId } = auth();
@@ -33,12 +35,7 @@ const Credits = async () => {
                     {plans.map((plan) => (
                         <li key={plan.name} className="credits-item">
                             <div className="flex-center flex-col gap-3">
-                                <Image
-                                    src={plan.icon}
-                                    alt="check"
-                                    width={50}
-                                    height={50}
-                                />
+                                <Map width={50} height={50} />
                                 <p className="p-20-semibold mt-2 text-purple-500">
                                     {plan.name}
                                 </p>
@@ -57,16 +54,11 @@ const Credits = async () => {
                                         key={plan.name + inclusion.label}
                                         className="flex items-center gap-4"
                                     >
-                                        <Image
-                                            src={`/assets/icons/${
-                                                inclusion.isIncluded
-                                                    ? "check.svg"
-                                                    : "cross.svg"
-                                            }`}
-                                            alt="check"
-                                            width={24}
-                                            height={24}
-                                        />
+                                        {inclusion.isIncluded ? (
+                                            <Check color="green" />
+                                        ) : (
+                                            <X color="red" />
+                                        )}
                                         <p className="p-16-regular">
                                             {inclusion.label}
                                         </p>
