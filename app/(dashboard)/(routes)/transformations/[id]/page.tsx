@@ -107,6 +107,7 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
                             <Button
                                 asChild
                                 type="button"
+                                variant="update"
                                 className="submit-button capitalize"
                             >
                                 <Link

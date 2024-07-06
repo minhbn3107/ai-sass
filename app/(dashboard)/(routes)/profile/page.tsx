@@ -26,7 +26,7 @@ const Profile = async ({ searchParams }: SearchParamProps) => {
                     </p>
                     <div className="mt-4 flex items-center gap-4">
                         <Image
-                            src="/assets/icons/coins.svg"
+                            src="/coins.svg"
                             alt="coins"
                             width={50}
                             height={50}
@@ -44,8 +44,8 @@ const Profile = async ({ searchParams }: SearchParamProps) => {
                     </p>
                     <div className="mt-4 flex items-center gap-4">
                         <Image
-                            src="/assets/icons/photo.svg"
-                            alt="coins"
+                            src="/photo.svg"
+                            alt="photo"
                             width={50}
                             height={50}
                             className="size-9 md:size-12"
@@ -57,7 +57,7 @@ const Profile = async ({ searchParams }: SearchParamProps) => {
                 </div>
             </section>
 
-            <section className="mt-8 md:mt-14 px-4 lg:px-8">
+            <section className="mt-8 md:mt-14 px-4 py-12 md:px-20 space-y-4">
                 <Collection
                     images={images?.data}
                     totalPages={images?.totalPages}

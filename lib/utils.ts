@@ -111,24 +111,20 @@ export const getImageSize = (
 };
 
 // DOWNLOAD IMAGE
-export const download = (url: string, filename: string) => {
-    if (!url) {
-        throw new Error("Resource URL not provided! You need to provide one");
-    }
-
-    fetch(url)
-        .then((response) => response.blob())
-        .then((blob) => {
-            const blobURL = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = blobURL;
-
-            if (filename && filename.length)
-                a.download = `${filename.replace(" ", "_")}.png`;
-            document.body.appendChild(a);
-            a.click();
-        })
-        .catch((error) => console.log({ error }));
+export const download = async (url: string, filename: string) => {
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/octet-stream",
+        },
+    });
+    const blob = await response.blob();
+    const link = document.createElement("a");
+    link.href = window.URL.createObjectURL(blob);
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 };
 
 // DEEP MERGE OBJECTS

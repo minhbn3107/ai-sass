@@ -13,8 +13,6 @@ import {
     LucideIcon,
 } from "lucide-react";
 
-type IconName = "ImageOff" | "ImageMinus" | "Sparkles" | "StarOff" | "Palette";
-
 const iconMap: Record<IconName, LucideIcon> = {
     ImageOff,
     ImageMinus,

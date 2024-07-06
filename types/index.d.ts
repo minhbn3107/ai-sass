@@ -101,6 +101,19 @@ declare type TransformationTypeKey =
     | "recolor"
     | "removeBackground";
 
+declare type IconName =
+    | "Code"
+    | "ImageIcon"
+    | "LayoutDashboard"
+    | "MessageSquare"
+    | "Music"
+    | "VideoIcon"
+    | "ImageOff"
+    | "ImageMinus"
+    | "Sparkles"
+    | "StarOff"
+    | "Palette";
+
 // ====== URL QUERY PARAMS
 declare type FormUrlQueryParams = {
     searchParams: string;

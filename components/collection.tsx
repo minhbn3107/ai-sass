@@ -14,6 +14,34 @@ import { IImage } from "@/lib/database/models/image.model";
 import { cn, formUrlQuery } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { SearchBar } from "./search";
+import {
+    Code,
+    ImageIcon,
+    LayoutDashboard,
+    MessageSquare,
+    Music,
+    VideoIcon,
+    ImageOff,
+    Sparkles,
+    StarOff,
+    Palette,
+    ImageMinus,
+    LucideIcon,
+} from "lucide-react";
+
+const iconMap: Partial<Record<IconName, LucideIcon>> = {
+    Code,
+    ImageIcon,
+    LayoutDashboard,
+    MessageSquare,
+    Music,
+    VideoIcon,
+    ImageOff,
+    ImageMinus,
+    Sparkles,
+    StarOff,
+    Palette,
+};
 
 export const Collection = ({
     hasSearch = false,
@@ -94,6 +122,7 @@ export const Collection = ({
 const Card = ({ image }: { image: IImage }) => {
     const transformationType =
         transformationTypes[image.transformationType as TransformationTypeKey];
+    const Icon = iconMap[transformationType.icon as IconName];
 
     return (
         <li>
@@ -115,9 +144,11 @@ const Card = ({ image }: { image: IImage }) => {
                     <p className="p-20-semibold mr-3 line-clamp-1 text-dark-600">
                         {image.title}
                     </p>
-                    {/* <transformationType.icon
-                        className={cn("w-6 h-6", transformationType.color)}
-                    /> */}
+                    {Icon && (
+                        <Icon
+                            className={cn("w-6 h-6", transformationType.color)}
+                        />
+                    )}
                 </div>
             </Link>
         </li>
