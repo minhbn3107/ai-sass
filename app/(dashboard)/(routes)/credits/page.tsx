@@ -74,7 +74,8 @@ const Credits = async () => {
                                 </Button>
                             ) : (
                                 <Checkout
-                                    plan={plan.name}
+                                    planId={plan._id}
+                                    planName={plan.name}
                                     amount={plan.price}
                                     credits={plan.credits}
                                     buyerId={user._id}

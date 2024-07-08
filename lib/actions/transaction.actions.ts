@@ -19,14 +19,15 @@ export async function checkOutCredits(transaction: CheckoutTransactionParams) {
                     currency: "usd",
                     unit_amount: amount,
                     product_data: {
-                        name: transaction.plan,
+                        name: transaction.planName,
                     },
                 },
                 quantity: 1,
             },
         ],
         metadata: {
-            plan: transaction.plan,
+            planId: transaction.planId,
+            planName: transaction.planName,
             credits: transaction.credits,
             buyerId: transaction.buyerId,
         },
@@ -47,7 +48,11 @@ export async function createTransaction(transaction: CreateTransactionParams) {
             buyer: transaction.buyerId,
         });
 
-        await updateCredits(transaction.buyerId, transaction.credits);
+        await updateCredits(
+            transaction.buyerId,
+            transaction.credits,
+            transaction.planId
+        );
 
         return JSON.parse(JSON.stringify(newTransaction));
     } catch (error) {

@@ -1,49 +1,16 @@
-"use client";
-
-import * as z from "zod";
-import axios from "axios";
-import Heading from "@/components/header";
 import { Music } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { musicSchema } from "@/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import Empty from "@/components/empty";
-import Loader from "@/components/loader";
+import Heading from "@/components/header";
+import MusicForm from "@/components/music-form";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import { getUserById } from "@/lib/actions/user.actions";
 
-export default function MusicPage() {
-    const router = useRouter();
-    const [music, setMusic] = useState<string>();
+export default async function MusicPage() {
+    const { userId } = auth();
 
-    const form = useForm<z.infer<typeof musicSchema>>({
-        resolver: zodResolver(musicSchema),
-        defaultValues: {
-            prompt: "",
-        },
-    });
+    if (!userId) redirect("/sign-in");
 
-    const isLoading = form.formState.isSubmitting;
-
-    const onSubmit = async (values: z.infer<typeof musicSchema>) => {
-        try {
-            setMusic(undefined);
-
-            const response = await axios.post("/api/music", values);
-
-            setMusic(response.data.audio);
-
-            form.reset();
-        } catch (error: any) {
-            // TODO: Open Pro Modal
-            console.log(error);
-        } finally {
-            router.refresh();
-        }
-    };
+    const user = await getUserById(userId);
 
     return (
         <div>
@@ -54,54 +21,7 @@ export default function MusicPage() {
                 iconColor="text-emerald-500"
                 bgColor="bg-emerald-500/10"
             />
-            <div className="px-4 lg:px-8">
-                <Form {...form}>
-                    <form
-                        onSubmit={form.handleSubmit(onSubmit)}
-                        className="rounded-lg border w-full p-4 px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2"
-                    >
-                        <FormField
-                            control={form.control}
-                            name="prompt"
-                            render={({ field }) => (
-                                <FormItem className="col-span-12 lg:col-span-10">
-                                    <FormControl className="m-0 p-0">
-                                        <Input
-                                            {...field}
-                                            className="border-0 outline-none focus-within:ring-0 focus-visible:ring-transparent"
-                                            disabled={isLoading}
-                                            placeholder="Piano solo"
-                                        />
-                                    </FormControl>
-                                </FormItem>
-                            )}
-                        />
-                        <Button
-                            className="col-span-12 lg:col-span-2 w-full"
-                            disabled={isLoading}
-                        >
-                            Generate
-                        </Button>
-                    </form>
-                </Form>
-                <div className="space-y-4 mt-4">
-                    {isLoading && (
-                        <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
-                            <Loader waitingTime="9 seconds" />
-                        </div>
-                    )}
-                    {!music && !isLoading && (
-                        <Empty label="No music generated." />
-                    )}
-                    {music && (
-                        <>
-                            <audio controls className="w-full mt-8">
-                                <source src={music} />
-                            </audio>
-                        </>
-                    )}
-                </div>
-            </div>
+            <MusicForm creditBalance={user.creditBalance} />
         </div>
     );
 }

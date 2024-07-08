@@ -13,7 +13,7 @@ import {
     LucideIcon,
 } from "lucide-react";
 
-const iconMap: Record<IconName, LucideIcon> = {
+const iconMap: Partial<Record<IconName, LucideIcon>> = {
     ImageOff,
     ImageMinus,
     Sparkles,

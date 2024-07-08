@@ -49,7 +49,7 @@ export const plans = [
                 isIncluded: true,
             },
             {
-                label: "Basic Access to Services",
+                label: "Limited Access to Services",
                 isIncluded: true,
             },
             {

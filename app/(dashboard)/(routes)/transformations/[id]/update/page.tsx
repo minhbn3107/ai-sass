@@ -1,5 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Heading from "@/components/header";
 import TransformationForm from "@/components/transformation-form";
 import { transformationTypes } from "@/constants";
@@ -29,6 +29,8 @@ const UpdatePage = async ({ params: { id } }: SearchParamProps) => {
 
     const user = await getUserById(userId);
     const image = await getImageById(id);
+
+    if (userId !== image.author.clerkId) notFound();
 
     const transformation =
         transformationTypes[image.transformationType as TransformationTypeKey];

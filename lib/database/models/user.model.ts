@@ -34,6 +34,10 @@ const UserSchema = new Schema({
         type: Number,
         default: 5,
     },
+    creditAmount: {
+        type: Number,
+        default: 5,
+    },
 });
 
 const User = models?.User || model("User", UserSchema);

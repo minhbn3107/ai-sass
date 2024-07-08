@@ -6,10 +6,11 @@ import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import FreeCounter from "./free-counter";
 
 const monserrat = Montserrat({ weight: "600", subsets: ["latin"] });
 
-export default function Sidebar() {
+export default function Sidebar({ creditBalance }: { creditBalance: number }) {
     const pathname = usePathname();
 
     return (
@@ -53,6 +54,7 @@ export default function Sidebar() {
                     ))}
                 </div>
             </div>
+            <FreeCounter creditBalance={creditBalance} />
         </div>
     );
 }
