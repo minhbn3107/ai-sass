@@ -16,7 +16,7 @@ const TransactionSchema = new Schema({
         required: true,
     },
     planId: {
-        type: number,
+        type: Number,
     },
     planName: {
         type: String,
