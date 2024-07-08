@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 export default function FreeCounter({
     creditBalance,
 }: {
-    creditBalance: number;
+    creditBalance?: number;
 }) {
     const [mounted, setMounted] = useState(false);
 
