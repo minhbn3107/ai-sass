@@ -83,11 +83,14 @@ export async function updateCredits(
         await connectToDatabase();
 
         const updateQuery = planId
-            ? { $inc: { creditBalance: creditFee, creditAmount: creditFee } }
+            ? {
+                  $inc: { creditBalance: creditFee, creditAmount: creditFee },
+                  $set: { planId: planId },
+              }
             : { $inc: { creditBalance: creditFee } };
 
         const updatedUserCredits = await User.findOneAndUpdate(
-            { _id: userId, planId },
+            { _id: userId },
             updateQuery,
             { new: true }
         );
