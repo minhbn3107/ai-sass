@@ -1,4 +1,5 @@
 import { Schema, model, models } from "mongoose";
+import { number } from "zod";
 
 const TransactionSchema = new Schema({
     createdAt: {
@@ -14,7 +15,10 @@ const TransactionSchema = new Schema({
         type: Number,
         required: true,
     },
-    plan: {
+    planId: {
+        type: number,
+    },
+    planName: {
         type: String,
     },
     credits: {
