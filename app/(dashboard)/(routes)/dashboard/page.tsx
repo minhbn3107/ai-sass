@@ -10,7 +10,6 @@ import {
     LayoutDashboard,
     MessageSquare,
     Music,
-    Settings,
     VideoIcon,
     ImageOff,
     Sparkles,
@@ -112,13 +111,6 @@ export const routes = [
         color: "text-amber-500",
         bgColor: "bg-amber-500/10",
     },
-    {
-        label: "Settings",
-        icon: Settings,
-        href: "/settings",
-        color: "text-gray-300",
-        bgColor: "bg-gray-300/10",
-    },
 ];
 
 export default async function DashboardPage({
@@ -140,7 +132,7 @@ export default async function DashboardPage({
             </div>
             <div className="px-4 md:px-20 space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {routes.slice(1, -3).map((route) => (
+                    {routes.slice(1, -2).map((route) => (
                         <Link key={route.label} href={route.href}>
                             <Card
                                 key={route.href}

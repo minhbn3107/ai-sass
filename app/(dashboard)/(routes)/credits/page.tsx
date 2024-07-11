@@ -30,42 +30,45 @@ const Credits = async () => {
 
             <section className="px-4 lg:px-8 pb-12 md:px-20 space-y-4">
                 <ul className="credits-list">
-                    {plans.map((plan) => (
-                        <li key={plan.name} className="credits-item">
-                            <>
-                                <div className="flex-center flex-col gap-3">
-                                    <Map width={50} height={50} />
-                                    <p className="p-20-semibold mt-2 text-purple-500">
-                                        {plan.name}
-                                    </p>
-                                    <p className="h1-semibold text-dark-600">
-                                        ${plan.price}
-                                    </p>
-                                    <p className="p-16-regular">
-                                        {plan.credits} Credits
-                                    </p>
+                    {plans.map((plan, index) => (
+                        <li key={plan.name} className="credits-item relative">
+                            {user.planId === plan._id && (
+                                <div className="absolute top-2 right-2 bg-purple-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
+                                    Current Plan
                                 </div>
+                            )}
+                            <div className="flex-center flex-col gap-3">
+                                <Map width={50} height={50} />
+                                <p className="p-20-semibold mt-2 text-purple-500">
+                                    {plan.name}
+                                </p>
+                                <p className="h1-semibold text-dark-600">
+                                    ${plan.price}
+                                </p>
+                                <p className="p-16-regular">
+                                    {plan.credits} Credits
+                                </p>
+                            </div>
 
-                                <ul className="flex flex-col gap-5 py-9">
-                                    {plan.inclusions.map((inclusion) => (
-                                        <li
-                                            key={plan.name + inclusion.label}
-                                            className="flex items-center gap-4"
-                                        >
-                                            {inclusion.isIncluded ? (
-                                                <Check color="green" />
-                                            ) : (
-                                                <X color="red" />
-                                            )}
-                                            <p className="p-16-regular">
-                                                {inclusion.label}
-                                            </p>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </>
+                            <ul className="flex flex-col gap-5 py-9">
+                                {plan.inclusions.map((inclusion) => (
+                                    <li
+                                        key={plan.name + inclusion.label}
+                                        className="flex items-center gap-4"
+                                    >
+                                        {inclusion.isIncluded ? (
+                                            <Check color="green" />
+                                        ) : (
+                                            <X color="red" />
+                                        )}
+                                        <p className="p-16-regular">
+                                            {inclusion.label}
+                                        </p>
+                                    </li>
+                                ))}
+                            </ul>
 
-                            {plan.name === "Free" ? (
+                            {index === 0 ? (
                                 <Button
                                     variant="outline"
                                     className="credits-btn"

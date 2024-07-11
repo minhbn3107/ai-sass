@@ -6,8 +6,11 @@ import { handleError } from "../utils";
 import { connectToDatabase } from "../database/mongoose";
 import Transaction from "../database/models/transaction.model";
 import { updateCredits } from "./user.actions";
+import { currentUser } from "@clerk/nextjs/server";
 
 export async function checkOutCredits(transaction: CheckoutTransactionParams) {
+    const user = await currentUser();
+
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
     const amount = Number(transaction.amount) * 100;
@@ -32,6 +35,7 @@ export async function checkOutCredits(transaction: CheckoutTransactionParams) {
             buyerId: transaction.buyerId,
         },
         mode: "payment",
+        customer_email: user?.emailAddresses[0].emailAddress,
         success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/profile`,
         cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/dashboard`,
     });

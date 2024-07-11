@@ -53,7 +53,6 @@ export default function ConversationPage() {
 
             form.reset();
         } catch (error: any) {
-            // TODO: Open Pro Modal
             console.log(error);
         } finally {
             router.refresh();

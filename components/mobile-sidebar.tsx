@@ -6,7 +6,15 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Sidebar from "./sidebar";
 import { useEffect, useState } from "react";
 
-export default function MobileSidebar() {
+export default function MobileSidebar({
+    creditBalance,
+    creditAmount,
+    planId,
+}: {
+    creditBalance: number;
+    creditAmount: number;
+    planId: number;
+}) {
     const [isMounted, setisMounted] = useState(false);
 
     useEffect(() => {
@@ -25,7 +33,11 @@ export default function MobileSidebar() {
                 </Button>
             </SheetTrigger>
             <SheetContent side="left" className="p-0">
-                <Sidebar />
+                <Sidebar
+                    creditBalance={creditBalance}
+                    creditAmount={creditAmount}
+                    planId={planId}
+                />
             </SheetContent>
         </Sheet>
     );

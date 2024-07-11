@@ -39,7 +39,7 @@ export const resolutionOptions = [
 export const plans = [
     {
         _id: 1,
-        name: "Free",
+        name: "Free Package",
         icon: "Map",
         price: 0,
         credits: 5,

@@ -167,17 +167,23 @@ export default function TransformationForm({
     };
 
     const onTransformHandler = async () => {
-        setIsTransforming(true);
+        try {
+            setIsTransforming(true);
 
-        setTransformationConfig(
-            deepMergeObjects(newTransformation, transformationConfig)
-        );
+            setTransformationConfig(
+                deepMergeObjects(newTransformation, transformationConfig)
+            );
 
-        setNewTransformation(null);
+            setNewTransformation(null);
 
-        startTransition(async () => {
-            await updateCredits(userId, creditFee);
-        });
+            startTransition(async () => {
+                await updateCredits(userId, creditFee);
+            });
+        } catch (error) {
+            console.log(error);
+        } finally {
+            router.refresh();
+        }
     };
 
     useEffect(() => {

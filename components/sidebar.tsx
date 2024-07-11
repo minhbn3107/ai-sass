@@ -10,7 +10,15 @@ import FreeCounter from "./free-counter";
 
 const monserrat = Montserrat({ weight: "600", subsets: ["latin"] });
 
-export default function Sidebar({ creditBalance }: { creditBalance?: number }) {
+export default function Sidebar({
+    creditBalance,
+    creditAmount,
+    planId,
+}: {
+    creditBalance: number;
+    creditAmount: number;
+    planId: number;
+}) {
     const pathname = usePathname();
 
     return (
@@ -54,7 +62,11 @@ export default function Sidebar({ creditBalance }: { creditBalance?: number }) {
                     ))}
                 </div>
             </div>
-            <FreeCounter creditBalance={creditBalance} />
+            <FreeCounter
+                creditBalance={creditBalance}
+                creditAmount={creditAmount}
+                planId={planId}
+            />
         </div>
     );
 }

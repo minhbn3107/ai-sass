@@ -54,7 +54,6 @@ export default function CodePage() {
 
             form.reset();
         } catch (error: any) {
-            // TODO: Open Pro Modal
             console.log(error);
         } finally {
             router.refresh();

@@ -17,11 +17,19 @@ export default async function DashboardLayout({
 
     return (
         <div className="h-full relative">
-            <div className="hidden h-full md:flex md:flex-col md:w-72 md:fixed md:inset-y-0 z-[80] bg-gray-900">
-                <Sidebar creditBalance={user.creditBalance} />
+            <div className="hidden h-full md:flex md:flex-col md:w-72 md:fixed md:inset-y-0  bg-gray-900">
+                <Sidebar
+                    creditBalance={user.creditBalance}
+                    creditAmount={user.creditAmount}
+                    planId={user.planId}
+                />
             </div>
             <main className="md:pl-72">
-                <Navbar />
+                <Navbar
+                    creditBalance={user.creditBalance}
+                    creditAmount={user.creditAmount}
+                    planId={user.planId}
+                />
                 {children}
             </main>
         </div>

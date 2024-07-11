@@ -12,8 +12,8 @@ export default function NotFound() {
                         Sorry we couldn&apos;t find this page.{" "}
                     </p>
                     <p className="mb-8">
-                        But dont worry, you can find plenty of other things on
-                        our homepage.
+                        But don&apos;t worry, you can find plenty of other
+                        things on our dashboard.
                     </p>
 
                     <Link href="/dashboard">
