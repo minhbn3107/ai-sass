@@ -1,5 +1,5 @@
 import { Music } from "lucide-react";
-import Heading from "@/components/header";
+import Heading from "@/components/heading";
 import MusicForm from "@/components/music-form";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";

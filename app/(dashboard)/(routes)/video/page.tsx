@@ -1,4 +1,4 @@
-import Heading from "@/components/header";
+import Heading from "@/components/heading";
 import { Video } from "lucide-react";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";

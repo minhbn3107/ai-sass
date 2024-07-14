@@ -1,4 +1,4 @@
-import Heading from "@/components/header";
+import Heading from "@/components/heading";
 import { redirect } from "next/navigation";
 import { transformationTypes } from "@/constants";
 import TransformationForm from "@/components/transformation-form";

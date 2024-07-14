@@ -6,7 +6,7 @@ interface EmptyProps {
 
 export default function Empty({ label }: EmptyProps) {
     return (
-        <div className="h-full p-20 flex flex-col items-center justify-center">
+        <div className="h-full px-5 flex flex-col items-center justify-center">
             <div className="relative h-72 w-72 select-none">
                 <Image alt="Empty" fill src="/empty.png" />
             </div>

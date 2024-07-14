@@ -1,6 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { notFound, redirect } from "next/navigation";
-import Heading from "@/components/header";
+import Heading from "@/components/heading";
 import TransformationForm from "@/components/transformation-form";
 import { transformationTypes } from "@/constants";
 import { getUserById } from "@/lib/actions/user.actions";

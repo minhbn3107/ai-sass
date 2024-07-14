@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import axios from "axios";
-import Heading from "@/components/header";
+import Heading from "@/components/heading";
 import { Code } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { codeSchema } from "@/schemas";

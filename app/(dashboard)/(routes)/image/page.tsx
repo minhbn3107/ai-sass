@@ -1,4 +1,4 @@
-import Heading from "@/components/header";
+import Heading from "@/components/heading";
 import ImageForm from "@/components/image-form";
 import { getUserById } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs/server";

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import TransformedImage from "@/components/transformed-image";
 import { Button } from "@/components/ui/button";
-import Heading from "@/components/header";
+import Heading from "@/components/heading";
 import { getImageById } from "@/lib/actions/image.actions";
 import { getImageSize } from "@/lib/utils";
 import { DeleteConfirmation } from "@/components/delete-confirmation";
