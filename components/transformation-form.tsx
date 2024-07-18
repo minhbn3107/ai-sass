@@ -15,7 +15,7 @@ import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { transformationSchema } from "@/schemas";
 import {
-    aspectRatioOptions,
+    cldAspectRatioOptions,
     creditFee,
     defaultValues,
     transformationTypes,
@@ -134,7 +134,7 @@ export default function TransformationForm({
         value: string,
         onChangeField: (value: string) => void
     ) => {
-        const imageSize = aspectRatioOptions[value as AspectRatioKey];
+        const imageSize = cldAspectRatioOptions[value as AspectRatioKey];
 
         setImage((prevState: any) => ({
             ...prevState,
@@ -225,11 +225,11 @@ export default function TransformationForm({
                                     <SelectValue placeholder="Select size" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    {Object.keys(aspectRatioOptions).map(
+                                    {Object.keys(cldAspectRatioOptions).map(
                                         (key) => (
                                             <SelectItem key={key} value={key}>
                                                 {
-                                                    aspectRatioOptions[
+                                                    cldAspectRatioOptions[
                                                         key as AspectRatioKey
                                                     ].label
                                                 }
@@ -327,7 +327,7 @@ export default function TransformationForm({
                         disabled={isTransforming || newTransformation === null}
                         onClick={onTransformHandler}
                     >
-                        {isTransforming
+                        {isTransforming && isPending
                             ? "Transforming..."
                             : "Apply Transformation"}
                     </Button>

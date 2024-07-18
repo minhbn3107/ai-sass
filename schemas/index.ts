@@ -1,17 +1,16 @@
 import * as z from "zod";
 
-export const codeSchema = z.object({
-    prompt: z.string().min(1, { message: "Prompt is required" }),
-});
-
 export const conversationSchema = z.object({
     prompt: z.string().min(1, { message: "Prompt is required" }),
 });
 
 export const imageSchema = z.object({
-    prompt: z.string().min(1, { message: "Image prompt is required" }),
-    amount: z.string().min(1),
-    resolution: z.string().min(1),
+    prompt: z
+        .string()
+        .min(1, { message: "Image prompt is required" })
+        .max(2000, { message: "Image prompt must not exceed 2000 characters" }),
+    samples: z.string().min(1),
+    aspect_ratio: z.string().min(1),
 });
 
 export const musicSchema = z.object({

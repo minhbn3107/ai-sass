@@ -1,5 +1,5 @@
 import Heading from "@/components/heading";
-import ConversationForm from "@/components/ui/conversation-form";
+import ConversationForm from "@/components/conversation-form";
 import { MessageSquare } from "lucide-react";
 
 export default function ConversationPage() {

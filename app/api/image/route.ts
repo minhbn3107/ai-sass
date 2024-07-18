@@ -1,22 +1,19 @@
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
 
-const openai = new OpenAI({
-    apiKey: process.env.OPEN_API_KEY,
-});
+const limeWireKey = process.env.LIMEWIRE_API;
 
 export async function POST(req: Request) {
     try {
         const { userId } = auth();
         const body = await req.json();
-        const { prompt, amount = 1, resolution = "512x512" } = body;
+        const { prompt, samples = 1, aspect_ratio = "1:1" } = body;
 
         if (!userId) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
 
-        if (!openai.apiKey) {
+        if (!limeWireKey) {
             return new NextResponse("OpenAI API Key not found", {
                 status: 500,
             });
@@ -26,22 +23,38 @@ export async function POST(req: Request) {
             return new NextResponse("Prompt is required", { status: 400 });
         }
 
-        if (!amount) {
-            return new NextResponse("Amount is required", { status: 400 });
+        if (!samples) {
+            return new NextResponse("Samples is required", { status: 400 });
         }
 
-        if (!resolution) {
-            return new NextResponse("Resolution is required", { status: 400 });
+        if (!aspect_ratio) {
+            return new NextResponse("Aspect Ratio is required", {
+                status: 400,
+            });
         }
 
-        const response = await openai.images.generate({
-            model: "dall-e-2",
-            prompt,
-            n: parseInt(amount),
-            size: resolution,
-        });
+        const response = await fetch(
+            `https://api.limewire.com/api/image/generation`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Api-Version": "v1",
+                    Accept: "application/json",
+                    Authorization: `Bearer ${limeWireKey}`,
+                },
+                body: JSON.stringify({
+                    prompt: prompt,
+                    samples: parseInt(samples),
+                    aspect_ratio: aspect_ratio,
+                }),
+            }
+        );
 
-        return NextResponse.json(response.data);
+        const responseData = await response.json();
+        console.log(responseData);
+
+        return NextResponse.json(responseData);
     } catch (error) {
         console.log("[IMAGE ERROR]", error);
         return new NextResponse("Internal Server Error", { status: 5000 });

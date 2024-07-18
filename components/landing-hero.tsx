@@ -19,7 +19,6 @@ export default function LandingHero() {
                                 "Chatbot",
                                 "Photo Generation",
                                 "Music Generation",
-                                "Code Generation",
                                 "Video Generation",
                                 "Photo Restore",
                                 "Generative Fill",

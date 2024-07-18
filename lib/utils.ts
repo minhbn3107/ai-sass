@@ -4,7 +4,7 @@ import { type ClassValue, clsx } from "clsx";
 import qs from "qs";
 import { twMerge } from "tailwind-merge";
 
-import { aspectRatioOptions } from "@/constants";
+import { cldAspectRatioOptions } from "@/constants";
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -94,7 +94,7 @@ export const debounce = (func: (...args: any[]) => void, delay: number) => {
 };
 
 // GET IMAGE SIZE
-export type AspectRatioKey = keyof typeof aspectRatioOptions;
+export type AspectRatioKey = keyof typeof cldAspectRatioOptions;
 export const getImageSize = (
     type: string,
     image: any,
@@ -102,7 +102,7 @@ export const getImageSize = (
 ): number => {
     if (type === "fill") {
         return (
-            aspectRatioOptions[image.aspectRatio as AspectRatioKey]?.[
+            cldAspectRatioOptions[image.aspectRatio as AspectRatioKey]?.[
                 dimension
             ] || 1000
         );

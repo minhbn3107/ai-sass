@@ -1,4 +1,4 @@
-export const amountOptions = [
+export const samplesOptions = [
     {
         value: "1",
         label: "1 Photo",
@@ -15,24 +15,28 @@ export const amountOptions = [
         value: "4",
         label: "4 Photo",
     },
-    {
-        value: "5",
-        label: "5 Photo",
-    },
 ];
 
-export const resolutionOptions = [
+export const lmAspectRatioOptions = [
     {
-        value: "256x256",
-        label: "256x256",
+        value: "1:1",
+        label: "1:1",
     },
     {
-        value: "512x512",
-        label: "512x512",
+        value: "13:19",
+        label: "13:19",
     },
     {
-        value: "1024x1024",
-        label: "1024x1024",
+        value: "19:13",
+        label: "19:13",
+    },
+    {
+        value: "2:3",
+        label: "2:3",
+    },
+    {
+        value: "3:2",
+        label: "3:2",
     },
 ];
 
@@ -166,7 +170,7 @@ export const transformationTypes = {
     },
 };
 
-export const aspectRatioOptions = {
+export const cldAspectRatioOptions = {
     "1:1": {
         aspectRatio: "1:1",
         label: "Square (1:1)",

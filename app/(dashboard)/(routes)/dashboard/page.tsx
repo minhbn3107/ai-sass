@@ -5,7 +5,6 @@ import { getAllImages } from "@/lib/actions/image.actions";
 import Link from "next/link";
 import { Collection } from "@/components/collection";
 import {
-    Code,
     ImageIcon,
     LayoutDashboard,
     MessageSquare,
@@ -54,13 +53,6 @@ export const routes = [
         href: "/music",
         color: "text-emerald-500",
         bgColor: "bg-emerald-500/10",
-    },
-    {
-        label: "Code Generation",
-        icon: Code,
-        href: "/code",
-        color: "text-blue-700",
-        bgColor: "bg-blue-700/10",
     },
     {
         label: "Image Restore",

@@ -81,9 +81,14 @@ body,
     }
 }
 
-/* Scrollbar Styles */
+/* Vertical Scrollbar Styles */
 ::-webkit-scrollbar {
     width: 8px;
+}
+
+/* Horizontal Scrollbar Styles */
+::-webkit-scrollbar:horizontal {
+    height: 8px;  /* Reduced from default to match the width */
 }
 
 ::-webkit-scrollbar-track {

@@ -6,10 +6,10 @@ const isProtectedRoute = createRouteMatcher([
     "/image(.*)",
     "/video(.*)",
     "/music(.*)",
-    "/code(.*)",
     "/transformations(.*)",
     "/profile(.*)",
     "/credits(.*)",
+    "/api/((?!webhooks).)*$",
 ]);
 
 export default clerkMiddleware((auth, req) => {

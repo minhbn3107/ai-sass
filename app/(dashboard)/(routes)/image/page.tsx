@@ -21,7 +21,7 @@ export default async function ImagePage() {
                 iconColor="text-pink-700"
                 bgColor="bg-pink-700/10"
             />
-            <ImageForm creditBalance={user.creditBalance} />
+            <ImageForm creditBalance={user.creditBalance} userId={user._id} />
         </div>
     );
 }

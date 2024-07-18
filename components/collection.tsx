@@ -15,7 +15,6 @@ import { cn, formUrlQuery } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { SearchBar } from "./search";
 import {
-    Code,
     ImageIcon,
     LayoutDashboard,
     MessageSquare,
@@ -30,7 +29,6 @@ import {
 } from "lucide-react";
 
 const iconMap: Partial<Record<IconName, LucideIcon>> = {
-    Code,
     ImageIcon,
     LayoutDashboard,
     MessageSquare,

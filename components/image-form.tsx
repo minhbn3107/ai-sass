@@ -5,13 +5,13 @@ import axios from "axios";
 import { Download } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { imageSchema } from "@/schemas";
-import { amountOptions, creditFee, resolutionOptions } from "@/constants";
+import { samplesOptions, creditFee, lmAspectRatioOptions } from "@/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import Empty from "@/components/empty";
 import Loader from "@/components/loader";
 import {
@@ -24,21 +24,27 @@ import {
 import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { InsufficientCreditsModal } from "./insufficient-credits-modal";
+import { useToast } from "./ui/use-toast";
+import { updateCredits } from "@/lib/actions/user.actions";
 
 export default function ImageForm({
     creditBalance,
+    userId,
 }: {
     creditBalance: number;
+    userId: string;
 }) {
     const router = useRouter();
+    const { toast } = useToast();
     const [images, setImages] = useState<string[]>([]);
+    const [isPending, startTransition] = useTransition();
 
     const form = useForm<z.infer<typeof imageSchema>>({
         resolver: zodResolver(imageSchema),
         defaultValues: {
             prompt: "",
-            amount: "1",
-            resolution: "512x512",
+            samples: "1",
+            aspect_ratio: "1:1",
         },
     });
 
@@ -50,15 +56,26 @@ export default function ImageForm({
 
             const response = await axios.post("/api/image", values);
 
-            const urls = response.data.map(
-                (image: { url: string }) => image.url
-            );
+            startTransition(async () => {
+                await updateCredits(userId, -parseInt(values.samples));
+            });
+
+            const urls = response.data.map((image: any) => image.asset_url);
+            console.log(urls);
 
             setImages(urls);
 
             form.reset();
         } catch (error: any) {
-            console.log(error);
+            console.error("Error in conversation:", error);
+
+            toast({
+                title: "Something went wrong!",
+                description:
+                    "An error occurred. Please try again in a few seconds.",
+                duration: 5000,
+                className: "error-toast",
+            });
         } finally {
             router.refresh();
         }
@@ -92,7 +109,7 @@ export default function ImageForm({
                     />
                     <FormField
                         control={form.control}
-                        name="amount"
+                        name="samples"
                         render={({ field }) => (
                             <FormItem className="col-span-12 lg:col-span-2">
                                 <Select
@@ -109,7 +126,7 @@ export default function ImageForm({
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        {amountOptions.map((option) => (
+                                        {samplesOptions.map((option) => (
                                             <SelectItem
                                                 key={option.value}
                                                 value={option.value}
@@ -124,7 +141,7 @@ export default function ImageForm({
                     />
                     <FormField
                         control={form.control}
-                        name="resolution"
+                        name="aspect_ratio"
                         render={({ field }) => (
                             <FormItem className="col-span-12 lg:col-span-2">
                                 <Select
@@ -141,7 +158,7 @@ export default function ImageForm({
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        {resolutionOptions.map((option) => (
+                                        {lmAspectRatioOptions.map((option) => (
                                             <SelectItem
                                                 key={option.value}
                                                 value={option.value}
@@ -156,7 +173,7 @@ export default function ImageForm({
                     />
                     <Button
                         className="col-span-12 lg:col-span-2 w-full"
-                        disabled={isLoading}
+                        disabled={isLoading && isPending}
                     >
                         Generate
                     </Button>

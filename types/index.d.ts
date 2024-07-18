@@ -104,7 +104,6 @@ declare type TransformationTypeKey =
     | "removeBackground";
 
 declare type IconName =
-    | "Code"
     | "ImageIcon"
     | "LayoutDashboard"
     | "MessageSquare"
@@ -156,4 +155,22 @@ declare type TransformedImageProps = {
     isTransforming: boolean;
     hasDownload?: boolean;
     setIsTransforming?: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+declare type ImageAsset = {
+    asset_id: string;
+    self: string;
+    asset_url: string;
+    type: string;
+    width: number;
+    height: number;
+};
+
+declare type ImageGenerationResponse = {
+    id: string;
+    self: string;
+    status: "COMPLETED";
+    credits_used: number;
+    credits_remaining: number;
+    data: ImageAsset[];
 };

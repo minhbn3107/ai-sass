@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     try {
         const { userId } = auth();
         const body = await req.json();
-        const { prompt, messages } = body;
+        const { messages } = body;
 
         if (!userId) {
             return new NextResponse("Unauthorized", { status: 401 });
@@ -32,17 +32,34 @@ export async function POST(req: Request) {
             generationConfig: {
                 maxOutputTokens: 500,
             },
-            history: [...messages],
+            history: messages.slice(0, -1).map((msg: any) => ({
+                role: msg.role,
+                parts: [{ text: msg.content }],
+            })),
         });
 
-        const result = await chat.sendMessageStream(prompt);
+        const latestMessage = messages[messages.length - 1];
+        const parts: any[] = [{ text: latestMessage.content }];
+
+        // Add images to the parts array if present
+        if (latestMessage.images) {
+            latestMessage.images.forEach((image: any) => {
+                parts.push({
+                    inlineData: {
+                        mimeType: image.type,
+                        data: image.data.split(",")[1], // Remove the "data:image/jpeg;base64," part
+                    },
+                });
+            });
+        }
+
+        const result = await chat.sendMessageStream(parts);
 
         // Create a ReadableStream to stream the response
         const stream = new ReadableStream({
             async start(controller) {
                 for await (const chunk of result.stream) {
                     const chunkText = chunk.text();
-                    // console.log(chunkText);
                     controller.enqueue(chunkText);
                 }
                 controller.close();
@@ -56,8 +73,22 @@ export async function POST(req: Request) {
                 "Transfer-Encoding": "chunked",
             },
         });
-    } catch (error) {
+    } catch (error: any) {
         console.log("[CODE ERROR]", error);
+
+        if (error.statusText === "Too Many Requests" && error.status === 429) {
+            return new NextResponse(
+                JSON.stringify({
+                    error: "Too many requests. Please try again later.",
+                    details: "The API quota has been exceeded.",
+                }),
+                {
+                    status: 429,
+                    headers: { "Content-Type": "application/json" },
+                }
+            );
+        }
+
         return new NextResponse("Internal Server Error", { status: 500 });
     }
 }
