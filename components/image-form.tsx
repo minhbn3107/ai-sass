@@ -60,7 +60,11 @@ export default function ImageForm({
                 await updateCredits(userId, -parseInt(values.samples));
             });
 
-            const urls = response.data.map((image: any) => image.asset_url);
+            console.log(response.data);
+
+            const urls = response.data.data.map(
+                (image: any) => image.asset_url
+            );
             console.log(urls);
 
             setImages(urls);
